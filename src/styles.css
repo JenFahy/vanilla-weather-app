@@ -13,6 +13,7 @@ ul {
 }
 li {
   list-style: none;
+  text-transform: capitalize;
 }
 
 .weather-app-wrapper {
