@@ -19,6 +19,8 @@ function formatDate(timestamp) {
   ];
   let day = days[date.getDay()];
   return ` ${day}, ${hours}:${minutes}`;
+
+  //make local time later
 }
 
 function displayTemperature(response) {
@@ -44,8 +46,20 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-let apiKey = "31591cbd759ed47dd528c71d7a08734d";
-let city = "Toronto";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function search(city) {
+  let apiKey = "31591cbd759ed47dd528c71d7a08734d";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
 
-axios.get(apiUrl).then(displayTemperature);
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchInputElement = document.querySelector("#search-input");
+  search(searchInputElement.value);
+}
+
+search("Toronto");
+//make current location later
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
