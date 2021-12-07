@@ -32,10 +32,14 @@ function displayTemperature(response) {
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#weather-icon");
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+
+  celsiusTemperature = response.data.main.temp;
+  feelsLikeCelsiusTemperature = response.data.main.feels_like;
+
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
-  feelsLikeTempElement.innerHTML = Math.round(response.data.main.feels_like);
+  feelsLikeTempElement.innerHTML = Math.round(feelsLikeCelsiusTemperature);
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
@@ -58,8 +62,44 @@ function handleSubmit(event) {
   search(searchInputElement.value);
 }
 
-search("Toronto");
-//make current location later
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#temperature");
+  let feelsLikeTempElement = document.querySelector("#feels-like");
+  let feelsLikeTempUnitElement = document.querySelector("#feels-like-unit");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+  feelsLikeTempElement.innerHTML = Math.round(fahrenheitTemperature);
+  feelsLikeTempUnitElement.innerHTML = `°F`;
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  let feelsLikeTempElement = document.querySelector("#feels-like");
+  let feelsLikeTempUnitElement = document.querySelector("#feels-like-unit");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  feelsLikeTempElement.innerHTML = Math.round(celsiusTemperature);
+  feelsLikeTempUnitElement.innerHTML = `°C`;
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+}
+
+//how do we return to C with each search?
+
+let celsiusTemperature = null;
+let feelsLikeCelsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+search("Toronto");
+//make current location later
