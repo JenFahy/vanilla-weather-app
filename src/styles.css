@@ -31,6 +31,13 @@ a {
   padding: 20px;
   border: 1px solid #7ad8d5;
   border-radius: 10px;
+
+  background: linear-gradient(
+    to top,
+    rgba(56, 248, 249, 0.3) -9.1%,
+    rgba(213, 141, 240, 0.7) 48%,
+    rgba(249, 56, 152, 0.9) 111.1%
+  );
 }
 .overview {
   margin-bottom: 10px;
@@ -56,4 +63,19 @@ a {
 .weather-icon .units .active {
   color: black;
   cursor: default;
+}
+
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.weather-forecast-date {
+  font-size: 16px;
+}
+.weather-forecast-temperatures {
+  font-size: 13px;
+}
+.weather-forecast-temperature-min {
+  opacity: 0.5;
 }
