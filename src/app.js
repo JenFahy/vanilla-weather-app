@@ -19,8 +19,6 @@ function formatDate(timestamp) {
   ];
   let day = days[date.getDay()];
   return ` ${day}, ${hours}:${minutes}`;
-
-  //make local time later
 }
 
 function formatDay(timestamp) {
@@ -55,7 +53,7 @@ function displayForecast(response) {
                 <div class="weather-forecast-temperatures">
                   <span class="weather-forecast-temperature-max">${Math.round(
                     forecastDay.temp.max
-                  )}°C</span>
+                  )}°C |</span>
                   <span class="weather-forecast-temperature-min">${Math.round(
                     forecastDay.temp.min
                   )}°C</span>
@@ -140,8 +138,6 @@ function displayCelsiusTemperature(event) {
   fahrenheitLink.classList.remove("active");
 }
 
-//how do we return to C with each search?
-
 let celsiusTemperature = null;
 let feelsLikeCelsiusTemperature = null;
 
@@ -155,4 +151,3 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Toronto");
-//make current location later

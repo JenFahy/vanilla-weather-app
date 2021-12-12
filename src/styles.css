@@ -42,6 +42,15 @@ a {
 .overview {
   margin-bottom: 10px;
 }
+
+.update {
+  opacity: 0.5;
+}
+
+.btn-primary {
+  background-color: #c8effc !important;
+  color: #ab48bc;
+}
 .weather-icon img {
   margin-right: 5px;
   height: 60px;
@@ -76,6 +85,14 @@ a {
 .weather-forecast-temperatures {
   font-size: 13px;
 }
+
+.weather-forecast-temperature-max {
+  color: #cc3300;
+}
 .weather-forecast-temperature-min {
-  opacity: 0.5;
+  color: #0e21a0;
+}
+
+#forecast {
+  margin-top: 10px;
 }
