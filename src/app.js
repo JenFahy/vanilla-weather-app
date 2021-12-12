@@ -23,6 +23,34 @@ function formatDate(timestamp) {
   //make local time later
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHtml = `<div class="row">`;
+  let days = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
+            <div class="col-2">
+              <div class="weather-forecast-date">
+              ${day} </div><img
+                  src="https://openweathermap.org/img/wn/03d@2x.png"
+                  alt="cloudy"
+                  id="weather-icon"
+                  width="42"
+                />
+                <div class="weather-forecast-temperatures">
+                  <span class="weather-forecast-temperature-max">18°C</span>
+                  <span class="weather-forecast-temperature-min">12°C</span>
+                </div>
+                            </div>`;
+  });
+
+  forecastHtml = forecastHtml + `</div>`;
+  forecastElement.innerHTML = forecastHtml;
+}
+
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
@@ -103,3 +131,6 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Toronto");
 //make current location later
+
+displayForecast();
+//move later
